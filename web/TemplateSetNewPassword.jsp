@@ -1,0 +1,77 @@
+<%-- 
+    Document   : TemplateLogin
+    Created on : Jun 21, 2023, 6:08:50 PM
+    Author     : pc
+--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>LSON's Garden</title>
+        <!-- Font Awesome -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+            />
+        <!-- Google Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+            />
+        <!-- MDB -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+            rel="stylesheet"
+            />
+        <!-- MDB -->
+        <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
+        ></script>
+    </head>
+    <link rel="icon" href="pics/favicon.ico" type="image/x-icon">
+    <body style="width: 100%; background-image: url(pics/bg2.png); background-size: 1520px 854px; background-repeat: repeat">
+        <div class="main">
+            <div class="container py-5 h-100">
+                <div style="margin-top: 10px" class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                            <div class="card-body p-5 text-center">
+                                <h3>Set New Password</h3>
+                                <br>
+                                <form action="SetNewPasswordServlet" method="post">
+                                    <div>
+                                        <input style="width: 250px; margin-bottom: 10px" type="password" placeholder="Password" name="newPassword">
+                                    </div>
+                                    <% String msgNewPassword = (String) request.getAttribute("msgNewPassword");
+                                    if (msgNewPassword != null) {
+                                    %>
+                                    <p style="color: red; font-weight: bold"><%= msgNewPassword %></p>
+                                    <%
+                                    }
+                                    %>
+                                    <br>
+                                    <div>
+                                        <input style="width: 250px; margin-bottom: 10px" type="password" placeholder="Re-enter Password" name="newReEnterPassword">
+                                    </div>
+                                    <% String msgReEnterNewPassword = (String) request.getAttribute("msgReEnterNewPassword");
+                                    if (msgReEnterNewPassword != null) {
+                                    %>
+                                    <p style="color: red; font-weight: bold"><%= msgReEnterNewPassword %></p>
+                                    <%
+                                    }
+                                    %>
+                                    <br>
+                                    <h6 style="color: red; margin-bottom: 15px">${requestScope.msgErrorMatchPassword != null ? msgErrorMatchPassword : ""}</h6>
+                                    <button name="btGetCaptcha" class="btn btn-primary btn-lg btn-block" style="background-color: #236D5E" type="submit">Change Password</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
